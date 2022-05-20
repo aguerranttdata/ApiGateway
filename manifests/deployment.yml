@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bankgateway
+  labels:
+    app: bankgateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: bankgateway
+  template:
+    metadata:
+      labels:
+        app: bankgateway
+        service: bankgateway
+    spec:
+      containers:
+        - name: bankgateway
+          image: bankgateway.azurecr.io/bankgateway:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8765
+              protocol: TCP
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:8765
+            - name: WebApiBaseAddress
+              value: http://webapi
