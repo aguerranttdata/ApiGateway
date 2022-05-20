@@ -17,7 +17,7 @@ public class ApiGatewayApplication {
     public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(p -> p.path("/accounts/**")
-                        .uri("lb://AccountsService"))
+                        .uri("http://accounts:8081"))
                 .route(p -> p.path("/clients/**")
                         .uri("lb://ClientsService"))
                 .route(p -> p.path("/credits/**")
