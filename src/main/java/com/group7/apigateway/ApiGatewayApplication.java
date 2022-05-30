@@ -22,6 +22,8 @@ public class ApiGatewayApplication {
                         .uri("http://clientsservice:8080"))
                 .route(p -> p.path("/credits/**")
                         .uri("http://creditsservice:8082"))
+                .route(p -> p.path("/yanki/**")
+                        .uri("http://yankiservice:8083"))
                 .build();
     }
 }
